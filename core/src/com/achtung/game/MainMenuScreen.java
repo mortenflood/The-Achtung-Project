@@ -12,7 +12,7 @@ public class MainMenuScreen implements Screen {
 
     final  MyGdxGame game;
     OrthographicCamera camera;
-     public MainMenuScreen(final MyGdxGame game){
+     public MainMenuScreen(MyGdxGame game){
          this.game = game;
          camera = new OrthographicCamera();
          camera.setToOrtho(false, 800, 480);
