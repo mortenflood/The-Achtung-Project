@@ -18,7 +18,7 @@ import com.badlogic.gdx.math.Vector3;
 import java.util.Random;
 
 
-public class MainMenuScreen implements Screen {
+public class MainMenuScreen implements Screen{
 
     Game game;
 

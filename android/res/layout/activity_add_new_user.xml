@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cameraDisplay"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true">
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/bar"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/bar" />
+
+    <ImageView
+        android:id="@+id/shutter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/bar"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/shutter_button" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/gallery_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignTop="@+id/bar"-->
+        <!--android:src="@drawable/gallery_button" />-->
+
+    <ImageView
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/bar"
+        android:src="@drawable/settings" />
+
+    <ImageView
+        android:id="@+id/display_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/menu_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bar"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/menu_bar_2" />
+
+    <ImageView
+        android:id="@+id/switch_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/menu_bar"
+        android:layout_alignLeft="@+id/menu_bar"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="36dp"
+        android:src="@drawable/camera_facing_front" />
+
+    <ImageView
+        android:id="@+id/flash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/switch_camera"
+        android:layout_alignLeft="@+id/menu_bar"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/flash_off" />
+
+</RelativeLayout>
