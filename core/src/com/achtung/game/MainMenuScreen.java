@@ -25,12 +25,11 @@ public class MainMenuScreen implements Screen {
     OrthographicCamera camera;
     SpriteBatch batcher;
     Rectangle testBounds;
-    Rectangle playBounds;
-    Rectangle highscoresBounds;
-    Rectangle helpBounds;
-    Rectangle multiplayerBounds;
+    //Rectangle playBounds, highscoresBounds, helpBounds;
+    Rectangle multiplayerBounds, singleplayerBounds, logoutBounds;
     Vector3 touchPoint;
-    Texture exit;
+    Texture exit, singleplayerButton, multiplayerButton, logoutButton, logo;
+
 
     private final int WORLD_WIDTH = 640;
     private final int WORLD_HEIGHT = 960;
@@ -48,9 +47,19 @@ public class MainMenuScreen implements Screen {
          /*playBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
          highscoresBounds = new Rectangle(160 - 150, 200 - 18, 300, 36);
          helpBounds = new Rectangle(160 - 150, 200 - 18 - 36, 300, 36);*/
-         multiplayerBounds = new Rectangle(0, WORLD_HEIGHT/2, WORLD_WIDTH, WORLD_HEIGHT);
+         multiplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.25f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
+         singleplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
+         logoutBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
+
+
+
          touchPoint = new Vector3();
          exit = new Texture("exitfinal.png");
+         singleplayerButton = new Texture("singleplayer.png");
+         multiplayerButton = new Texture("multiplayer.png");
+         logoutButton = new Texture("logout.png");
+         logo = new Texture("achtung.jpg");
+
      }
 
 
@@ -70,7 +79,7 @@ public class MainMenuScreen implements Screen {
         if (Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-            if (testBounds.contains(touchPoint.x, touchPoint.y)) {
+            if (singleplayerBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Assets.playSound(Assets.clickSound);
                 game.setScreen(new GameScreen(game));
                 return;
@@ -81,19 +90,15 @@ public class MainMenuScreen implements Screen {
                 game.setScreen(new StartMultiplayerScreen(game));
                 return;
             }
-            /*if (soundBounds.contains(touchPoint.x, touchPoint.y)) {
-                Assets.playSound(Assets.clickSound);
-                Settings.soundEnabled = !Settings.soundEnabled;
-                if (Settings.soundEnabled)
-                    Assets.music.play();
-                else
-                    Assets.music.pause();
-            }*/
+            if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
+                Gdx.app.exit();
+
+            }
         }
     }
 
     public void draw () {
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
@@ -102,7 +107,12 @@ public class MainMenuScreen implements Screen {
 
         batcher.disableBlending();
         batcher.begin();
-        batcher.draw(exit, 0, 0, WORLD_WIDTH, WORLD_HEIGHT/2);
+        //batcher.draw(exit, 0, 0, WORLD_WIDTH, WORLD_HEIGHT / 2);
+
+        batcher.draw(logo,WORLD_WIDTH/4,WORLD_HEIGHT*0.6f, WORLD_WIDTH/2, WORLD_WIDTH/2);
+        batcher.draw(singleplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
+        batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.25f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
+        batcher.draw(logoutButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
         batcher.end();
 
     }
