@@ -7,5 +7,5 @@ eclipse.project {
 }
 dependencies {
     compile files('/Users/mortenflood/Documents/Android/Achtung-Project/libs/App42MultiPlayerGamingSDK.jar')
-    compile files('C:/Users/Malte/Desktop/The-Achtung-Project/libs/App42MultiPlayerGamingSDK.jar')
+
 }
