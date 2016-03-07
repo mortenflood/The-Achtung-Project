@@ -10,7 +10,9 @@ public class MainMenuScreenLauncher extends AndroidApplication {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new AchtungGame(), config);
+
+		AndroidLibgdxInterface resolver = new AndroidLibgdxResolver(this);
+		initialize(new AchtungGame(resolver), config);
 	}
 
 

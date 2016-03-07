@@ -7,12 +7,20 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 
+
+
 public class AchtungGame extends Game {
+
+    public AndroidLibgdxInterface resolver;
 
     boolean firstTimeCreate = true;
     FPSLogger fps;
 
-    
+    public AchtungGame(AndroidLibgdxInterface resolver) {
+        super();
+        this.resolver = resolver;
+    }
+
     @Override
     public void create () {
         //Settings.load();
@@ -37,5 +45,6 @@ public class AchtungGame extends Game {
         super.dispose();
         getScreen().dispose();
     }
+
 
 }
