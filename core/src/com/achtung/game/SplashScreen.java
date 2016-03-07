@@ -13,6 +13,8 @@ public class SplashScreen implements Screen {
     private SpriteBatch batch;
     private Texture textureSplash;
 
+    AchtungGame game;
+
     public SplashScreen(){
         super();
         batch = new SpriteBatch();
