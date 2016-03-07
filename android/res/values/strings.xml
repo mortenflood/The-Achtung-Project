@@ -3,4 +3,21 @@
 
     <string name="app_name">the-achtung-project</string>
 
+    <string name="title_activity_add_new_user">AddNewUser</string>
+    <string name="title_activity_image_confirmation">ImageConfirmation</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="title_activity_delete_user">Delete User</string>
+    <string name="title_activity_main_screen_launcher">Main Screen Launcher</string>
+
+    <string name="intro">Sick game boys</string>
+    <string name="introButton">Start game</string>
+    <string name="existingUserButton">Existing User</string>
+    <string name="newUserButton">New User</string>
+    <string name="deleteButton">Delete Users</string>
+    <string name="guestUserButton">Guest</string>
+
+
+
+    <string name="action_settings">Settings</string>
+
 </resources>

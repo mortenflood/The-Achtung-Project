@@ -16,7 +16,7 @@ android {
     }
     defaultConfig {
         applicationId "com.achtung.game"
-        minSdkVersion 8
+        minSdkVersion 16
         targetSdkVersion 23
     }
 }
@@ -121,4 +121,5 @@ idea {
 }
 dependencies {
     compile files('libs/App42MultiPlayerGamingSDK.jar')
+    compile files('libs/sd-sdk-facial-processing.jar')
 }

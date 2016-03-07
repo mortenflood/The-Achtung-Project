@@ -1,8 +1,9 @@
-package com.achtung.game;
+package com.achtung.game.faceRec;
 
 /**
  * Created by Malte on 04.03.2016.
  */
+import com.achtung.game.MainMenuScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -12,7 +13,6 @@ public class AchtungGame extends Game {
     boolean firstTimeCreate = true;
     FPSLogger fps;
 
-    
     @Override
     public void create () {
         //Settings.load();
