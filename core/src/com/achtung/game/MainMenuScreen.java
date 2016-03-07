@@ -86,7 +86,7 @@ public class MainMenuScreen implements Screen{
             }
             if (multiplayerBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Assets.playSound(Assets.clickSound);
-                //WarpController.getInstance().startApp(getRandomHexString(10));
+                WarpController.getInstance().startApp(getRandomHexString(10));
                 game.setScreen(new StartMultiplayerScreen(game));
                 return;
             }
