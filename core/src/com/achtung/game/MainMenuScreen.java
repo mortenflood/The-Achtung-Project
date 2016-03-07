@@ -91,7 +91,9 @@ public class MainMenuScreen implements Screen{
                 return;
             }
             if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
-                Gdx.app.exit();
+//                Gdx.app.exit();
+                AchtungGame tempGame = (AchtungGame) this.game;
+                tempGame.resolver.logOut();
 
             }
         }
