@@ -1,5 +1,6 @@
 package com.achtung.game.multiplayer;
 
+import com.achtung.game.Constants;
 import com.shephertz.app42.gaming.multiplayer.client.WarpClient;
 import com.shephertz.app42.gaming.multiplayer.client.command.WarpResponseResultCode;
 import com.shephertz.app42.gaming.multiplayer.client.events.RoomEvent;
@@ -17,8 +18,8 @@ public class WarpController {
 
     private boolean showLog = true;
     //TODO
-    private final String apiKey = "14a611b4b3075972be364a7270d9b69a5d2b24898ac483e32d4dc72b2df039ef"; //CHANGE KEYS
-    private final String secretKey = "55216a9a165b08d93f9390435c9be4739888d971a17170591979e5837f618059";
+    private final String apiKey = Constants.apiKey; //CHANGE KEYS
+    private final String secretKey = Constants.secretKey;
 
     private WarpClient warpClient;
 
@@ -132,6 +133,7 @@ public class WarpController {
         if(event.getResult()==WarpResponseResultCode.SUCCESS){// success case
             this.roomId = event.getData().getId();
             warpClient.subscribeRoom(roomId);
+            log("success");
         }else if(event.getResult()== WarpResponseResultCode.RESOURCE_NOT_FOUND){// no such room found
             HashMap<String, Object> data = new HashMap<String, Object>();
             data.put("result", "");

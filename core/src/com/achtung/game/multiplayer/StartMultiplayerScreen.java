@@ -6,9 +6,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+
+import java.awt.Color;
 
 /**
  * Created by Malte on 06.03.2016.
@@ -37,6 +42,10 @@ public class StartMultiplayerScreen implements Screen, WarpListener{
 
     private String[] msg = tryingToConnect;
 
+    private BitmapFont font;
+    private Texture left, right, exit;
+    private ShapeRenderer renderer;
+
     public StartMultiplayerScreen (Game game) {
         this.game = game;
 
@@ -46,7 +55,12 @@ public class StartMultiplayerScreen implements Screen, WarpListener{
         touchPoint = new Vector3();
         batcher = new SpriteBatch();
         xOffset = 80;
+        font = new BitmapFont();
+        left = new Texture("leftarrowfinal.png");
+        right = new Texture("rightarrowfinal.png");
+        renderer = new ShapeRenderer();
         WarpController.getInstance().setListener(this);
+
     }
 
     public void update () {
@@ -63,27 +77,24 @@ public class StartMultiplayerScreen implements Screen, WarpListener{
     }
 
     public void draw () {
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         guiCam.update();
 
         batcher.setProjectionMatrix(guiCam.combined);
         batcher.disableBlending();
         batcher.begin();
-        //batcher.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+        batcher.draw(left, 0f, 0f, 4 * WORLD_WIDTH / 10, WORLD_HEIGHT / 10);
+        batcher.draw(right, 6 * WORLD_WIDTH / 10, 0f, 4 * WORLD_WIDTH / 10, WORLD_HEIGHT / 10);
         batcher.end();
+
 
         batcher.enableBlending();
         batcher.begin();
 
-
-        float y = 230;
-        for (int i = msg.length-1; i >= 0; i--) {
-            //float width = Assets.font.getBounds(msg[i]).width;
-            //Assets.font.draw(batcher, msg[i], 160-width/2, y);
-            //y += Assets.font.getLineHeight();
-        }
-
+        font.setColor(com.badlogic.gdx.graphics.Color.CYAN);
+        font.getData().setScale(5, 5);
+        font.draw(batcher, "Trying to connect", WORLD_WIDTH / 4, WORLD_HEIGHT / 2);
         //batcher.draw(Assets.arrow, 0, 0, 64, 64);
         batcher.end();
     }
