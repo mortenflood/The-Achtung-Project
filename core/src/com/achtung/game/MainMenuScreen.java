@@ -119,6 +119,7 @@ public class MainMenuScreen implements Screen{
                 //Gdx.app.exit();
                 AchtungGame tempGame = (AchtungGame) this.game;
                 tempGame.resolver.logOut();
+//                tempGame.resolver.updateFaceRec();
 
             }
             if (optionsBound.contains(touchPoint.x, touchPoint.y)) {

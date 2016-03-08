@@ -6,6 +6,7 @@ package com.achtung.game;
 public interface AndroidLibgdxInterface {
 
     public void logOut();
-
+    public void updateFaceRec();
+    public void onBackPressed();
 
 }

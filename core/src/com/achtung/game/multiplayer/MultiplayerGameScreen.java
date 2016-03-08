@@ -28,8 +28,8 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     static final int GAME_OVER = 4;
 
     Game game;
-    private final int WORLD_WIDTH = 1440;
-    private final int WORLD_HEIGHT = 2932;
+    private final int WORLD_WIDTH = 181;
+    private final int WORLD_HEIGHT = 300;
 
     int state;
     OrthographicCamera guiCam;
@@ -53,7 +53,9 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
         guiCam.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);
         touchPoint = new Vector3();
         batcher = new SpriteBatch();
-        player = new Player(MathUtils.round(1000* MathUtils.random()), MathUtils.round(1000* MathUtils.random()), 2, Color.BLUE);
+        int x = MathUtils.round(100* MathUtils.random());
+        int y = MathUtils.round(100* MathUtils.random());
+        player = new Player(x, y, 1, Color.BLUE);
 
         worldListener = new World.WorldListener() {
             @Override
@@ -105,6 +107,8 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     public void draw(){
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
         guiCam.update();
 
         renderer.render();
@@ -134,7 +138,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
 
     @Override
     public void dispose() {
-
+        batcher.dispose();
     }
 
     @Override
@@ -165,6 +169,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
             int y = (int)data.getDouble("y");
             Position pos = new Position(x, y);
             renderer.addEnemyPos(pos);
+//            renderer.addEnemyXY(x, y);
 
         } catch (Exception e) {
             // exception in onMoveNotificationReceived
