@@ -452,41 +452,7 @@ public class ImageConfirmation extends Activity {
 		});
 
 
-//	private void startMenuButtonOnClickListener() {
-//
-//		homeButton = (ImageView) findViewById(R.id.home_button);
-//		homeButton.setVisibility(View.GONE);
-//		homeButton.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View arg0) {
-//				//Get username
-//				faceDataArray = faceObj.getFaceData();
-//				String selectedPersonId = Integer
-//						.toString(faceDataArray[0]
-//								.getPersonId());
-//				String personName = null;
-//				Iterator<HashMap.Entry<String, String>> iter = hash
-//						.entrySet().iterator();
-//				while (iter.hasNext()) {
-//					HashMap.Entry<String, String> entry = iter
-//							.next();
-//					if (entry.getValue().equals(
-//							selectedPersonId)) {
-//						personName = entry.getKey();
-//					}
-//				}
-//
-//				//Send user to game main menu
-//				Intent intent = new Intent(com.mygdx.game.ImageConfirmation.this,
-//						com.mygdx.game.MainFaceRecActivity.class);
-////				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//				intent.putExtra("Username", personName);
-//
-//				startActivity(intent);
-//			}
-//		});
-		
+
 	}
 	
 	@Override
