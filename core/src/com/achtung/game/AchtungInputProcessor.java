@@ -12,9 +12,16 @@ public class AchtungInputProcessor implements InputProcessor {
 
 
     private Player player;
+    private Player player2;
 
     public AchtungInputProcessor(Player player) {
         this.player = player;
+        this.player2 = null;
+    }
+
+    public AchtungInputProcessor(Player player, Player player2 ) {
+        this.player = player;
+        this.player2 = player2;
     }
 
     public boolean keyDown (int keycode) {
@@ -40,6 +47,18 @@ public class AchtungInputProcessor implements InputProcessor {
                 && y < Gdx.graphics.getHeight() && x < Gdx.graphics.getWidth()) {
             player.setMoveRight(true);
         }
+
+        if (player2 != null) {
+            if (x > 0 && y > 0 && y <
+                    9 * Gdx.graphics.getHeight() / 10 && x < 4 * Gdx.graphics.getWidth() / 10) {
+                player2.setMoveRight(true);
+            }
+            else if(x > 6 * Gdx.graphics.getWidth() / 10 && y > 0
+                    && y < 9 * Gdx.graphics.getHeight() / 10 && x < Gdx.graphics.getWidth()) {
+                player2.setMoveLeft(true);
+            }
+        }
+
         return true;
     }
 
@@ -53,6 +72,18 @@ public class AchtungInputProcessor implements InputProcessor {
                 && y < Gdx.graphics.getHeight() && x < Gdx.graphics.getWidth()) {
             player.setMoveRight(false);
         }
+
+        if (player2 != null) {
+            if (x > 0 && y > 0 && y <
+                    9 * Gdx.graphics.getHeight() / 10 && x < 4 * Gdx.graphics.getWidth() / 10) {
+                player2.setMoveRight(false);
+            }
+            else if(x > 6 * Gdx.graphics.getWidth() / 10 && y > 0
+                    && y < 9 * Gdx.graphics.getHeight() / 10 && x < Gdx.graphics.getWidth()) {
+                player2.setMoveLeft(false);
+            }
+        }
+
         return true;
     }
 
