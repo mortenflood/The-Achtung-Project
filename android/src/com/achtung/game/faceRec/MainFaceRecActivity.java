@@ -31,7 +31,6 @@ import java.util.Map;
 public class MainFaceRecActivity extends Activity {
 
 
-//    private GridView gridView;
     public final String TAG = "com.mygdx.game.MainFaceRecActivity";
     public static FacialProcessing faceObj;
     public final int confidence_value = 58;
@@ -74,7 +73,7 @@ public class MainFaceRecActivity extends Activity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int id) {
-                                        //MainFaceRecActivity.this.finish();
+//                                        MainFaceRecActivity.this.finish();
                                     }
                                 }).show();
             }
