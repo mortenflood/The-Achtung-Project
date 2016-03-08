@@ -8,5 +8,6 @@ public interface AndroidLibgdxInterface {
     public void logOut();
     public void updateFaceRec();
     public void onBackPressed();
+    public String getUserName();
 
 }

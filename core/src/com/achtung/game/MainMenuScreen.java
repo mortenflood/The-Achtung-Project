@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -36,6 +37,7 @@ public class MainMenuScreen implements Screen{
     Stage stage;
     Skin skin;
     Table table;
+    Label usernameLabel;
 
 
 
@@ -60,20 +62,25 @@ public class MainMenuScreen implements Screen{
          addImagesBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
 
          //SKINS, STAGES AND FONTS
-         /*
+
          skin = new Skin(Gdx.files.internal("data/uiskin.json"));
          stage = new Stage();
          Gdx.input.setInputProcessor(stage);
+         usernameLabel = new Label(getUserName(), skin);
+         stage.addActor(usernameLabel);
+         usernameLabel.setPosition(0,0);
+         usernameLabel.setFontScale(1);
+
+         /*
          table = new Table();
          table.setFillParent(true);
          stage.addActor(table);
-
          final TextButton button = new TextButton("CLICK ME!", skin);
          button.setWidth(500f);
          button.setHeight(100f);
          button.setPosition(WORLD_WIDTH/4, WORLD_HEIGHT*0.65f);
-         table.add(button).size(400f,200f);
-            */
+         table.add(button).size(400f,200f);*/
+
 
 
          //TEXTURES
@@ -118,17 +125,17 @@ public class MainMenuScreen implements Screen{
             if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Gdx.app.exit();
                 AchtungGame tempGame = (AchtungGame) this.game;
-                tempGame.resolver.logOut();
-//                tempGame.resolver.updateFaceRec();
+                tempGame.getResolver().logOut();
 
             }
+
             if (optionsBound.contains(touchPoint.x, touchPoint.y)) {
 
 
             }
             if (addImagesBound.contains(touchPoint.x, touchPoint.y)) {
-                //AchtungGame tempGame = (AchtungGame) this.game;
-                //tempGame.resolver.logOut();
+                AchtungGame tempGame = (AchtungGame) this.game;
+                tempGame.getResolver().updateFaceRec();
 
 
             }
@@ -142,15 +149,15 @@ public class MainMenuScreen implements Screen{
         camera.update();
         batcher.setProjectionMatrix(camera.combined);
 
-        //stage.act(Gdx.graphics.getDeltaTime());
-        //stage.draw();
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
 
 
         batcher.disableBlending();
         batcher.begin();
 
-        batcher.draw(logo,WORLD_WIDTH/3,WORLD_HEIGHT*0.7f, WORLD_WIDTH/3, WORLD_WIDTH/3);
-        batcher.draw(singleplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(logo, WORLD_WIDTH /3,WORLD_HEIGHT*0.7f, WORLD_WIDTH / 3, WORLD_WIDTH / 3);
+        batcher.draw(singleplayerButton, WORLD_WIDTH / 6, WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(optionsButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(addImagesButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
@@ -203,5 +210,10 @@ public class MainMenuScreen implements Screen{
             sb.append(Integer.toHexString(r.nextInt()));
         }
         return sb.toString().substring(0, numchars);
+    }
+
+    private String getUserName() {
+        AchtungGame tempGame = (AchtungGame) this.game;
+        return tempGame.getResolver().getUserName();
     }
 }
