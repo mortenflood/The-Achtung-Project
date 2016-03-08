@@ -74,7 +74,7 @@ public class MainFaceRecActivity extends Activity {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,
                                                         int id) {
-                                        MainFaceRecActivity.this.finish();
+                                        //MainFaceRecActivity.this.finish();
                                     }
                                 }).show();
             }
