@@ -1,13 +1,18 @@
 package com.achtung.game;
 
+import java.util.HashMap;
+
 /**
  * Created by Zlash on 06/03/16.
  */
 public interface AndroidLibgdxInterface {
 
-    public void logOut();
-    public void updateFaceRec();
-    public void onBackPressed();
-    public String getUserName();
+    void logOut();
+    void onBackPressed();
+    String getUserName();
+    HashMap<String, Integer> retrieveHashWins();
+    void incrementHashWin(String userName);
+    HashMap<String, Integer> retrieveHashLosses();
+    void incrementHashLosses(String userName);
 
 }

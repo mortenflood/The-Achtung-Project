@@ -16,6 +16,7 @@ public class MainMenuScreenLauncher extends AndroidApplication {
 
 		Bundle extras = getIntent().getExtras();
 		String userName = extras.getString("Username");
+		String personId = extras.getString("PersonID");
 
 		AndroidLibgdxInterface resolver = new AndroidLibgdxResolver(this, userName);
 		initialize(new AchtungGame(resolver), config);

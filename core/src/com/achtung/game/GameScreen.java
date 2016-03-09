@@ -152,6 +152,8 @@ public class GameScreen implements Screen {
     }
 
     public void update() {
+
+        //Accelerometer used to control with phone motion
         if (this.motionControl = true) {
             Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
 
@@ -169,17 +171,7 @@ public class GameScreen implements Screen {
                 mainPlayer.setMoveRight(false);
             }
 
-//            else if (Gdx.input.getGyroscopeY() < 0) {
-//                mainPlayer.setMoveRight(true);
-//            }
         }
-
-//        if (Gdx.input.getGyroscopeY() < 1) {
-//            mainPlayer.setMoveLeft(false);
-//        }
-
-
-
 
         for (Player p : players) {
 

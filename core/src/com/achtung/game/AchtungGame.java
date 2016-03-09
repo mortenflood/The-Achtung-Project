@@ -7,11 +7,13 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
 
+import java.util.HashMap;
 
 
 public class AchtungGame extends Game {
 
     private AndroidLibgdxInterface resolver;
+    private HashMap<String, int[]> hashScores; //HashMap containing user scores
 
     boolean firstTimeCreate = true;
     FPSLogger fps;
@@ -49,4 +51,5 @@ public class AchtungGame extends Game {
     public AndroidLibgdxInterface getResolver() {
         return resolver;
     }
+
 }

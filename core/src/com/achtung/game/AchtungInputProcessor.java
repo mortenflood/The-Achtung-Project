@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public class AchtungInputProcessor implements InputProcessor {
 
-
     private Player player;
     private Player player2;
 
