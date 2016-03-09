@@ -8,4 +8,5 @@ eclipse.project {
 dependencies {
     compile files('/Users/mortenflood/Documents/Android/The-Achtung-Project/libs/App42MultiPlayerGamingSDK.jar')
     compile files('/Users/mortenflood/Documents/Android/The-Achtung-Project/android/libs/json-org.jar')
+
 }

@@ -1,10 +1,4 @@
-package com.achtung.game.faceRec;/*
- * =========================================================================
- * Copyright (c) 2014 Qualcomm Technologies, Inc. All Rights Reserved.
- * Qualcomm Technologies Proprietary and Confidential.
- * =========================================================================
- * @file com.mygdx.game.ImageConfirmation.java
- */
+package com.achtung.game.faceRec;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -432,19 +426,15 @@ public class ImageConfirmation extends Activity {
 					}
 
 					//Send user to game main menu
-					Intent intent = new Intent(ImageConfirmation.this,
-							MainMenuScreenLauncher.class);
-//				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+					Intent intent = new Intent(ImageConfirmation.this, MainMenuScreenLauncher.class);
 					intent.putExtra("Username", personName);
-
 					startActivity(intent);
 				}
 				else if(!mainMenu && mainFaceRecMenu) {
 
 
 					//Send user to game main menu
-					Intent intent = new Intent(ImageConfirmation.this,
-							MainFaceRecActivity.class);
+					Intent intent = new Intent(ImageConfirmation.this, MainFaceRecActivity.class);
 //				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 					startActivity(intent);
 				}

@@ -79,30 +79,6 @@ public class MainFaceRecActivity extends Activity {
             }
         }
 
-//        gridView = (GridView) findViewById(R.id.gridview);
-//        gridView.setAdapter(new ImageAdapter(this));
-//
-////        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-////            public void onItemClick(AdapterView<?> parent, View v,
-////                                    int position, long id) {
-////                switch (position) {
-////
-////                    case 0: // Adding a person
-////                        addNewPerson();
-////                        break;
-////
-////                    case 1: // Updating an existing person
-////                        updateExistingPerson();
-////                        break;
-////
-////                    case 2: // Identifying a person.
-////                        identifyPerson();
-////                        break;
-////
-////
-////                }
-////            }
-////        });
 
         //Buttons and behaviour
         final Button existingUserButton = (Button) this.findViewById(R.id.button_existing_user);
@@ -188,17 +164,6 @@ public class MainFaceRecActivity extends Activity {
         intent.putExtra("PersonId", -1);
         intent.putExtra("UpdatePerson", false);
         intent.putExtra("IdentifyPerson", false);
-        startActivity(intent);
-    }
-
-    /*
-     * Method to handle updating of an existing person from the recognition
-     * album
-     */
-    private void updateExistingPerson() {
-        Intent intent = new Intent(this, ChooseUser.class);
-        intent.putExtra("DeleteUser", false);
-        intent.putExtra("UpdateUser", true);
         startActivity(intent);
     }
 

@@ -37,7 +37,8 @@ public class MainMenuScreen implements Screen{
     Stage stage;
     Skin skin;
     Table table;
-    Label label;
+
+    Label usernameLabel;
 
 
 
@@ -66,6 +67,12 @@ public class MainMenuScreen implements Screen{
          skin = new Skin(Gdx.files.internal("data/uiskin.json"));
          stage = new Stage();
          Gdx.input.setInputProcessor(stage);
+         usernameLabel = new Label(getUserName(), skin);
+         stage.addActor(usernameLabel);
+         usernameLabel.setPosition(0,0);
+         usernameLabel.setFontScale(1);
+
+         /*
          table = new Table();
          table.setFillParent(true);
          stage.addActor(table);
@@ -119,17 +126,17 @@ public class MainMenuScreen implements Screen{
             if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Gdx.app.exit();
                 AchtungGame tempGame = (AchtungGame) this.game;
-                tempGame.resolver.logOut();
-//                tempGame.resolver.updateFaceRec();
+                tempGame.getResolver().logOut();
 
             }
+
             if (optionsBound.contains(touchPoint.x, touchPoint.y)) {
                 game.setScreen(new OptionsScreen(game));
 
             }
             if (addImagesBound.contains(touchPoint.x, touchPoint.y)) {
-                //AchtungGame tempGame = (AchtungGame) this.game;
-                //tempGame.resolver.logOut();
+                AchtungGame tempGame = (AchtungGame) this.game;
+                tempGame.getResolver().updateFaceRec();
 
 
             }
@@ -143,15 +150,15 @@ public class MainMenuScreen implements Screen{
         camera.update();
         batcher.setProjectionMatrix(camera.combined);
 
-        //stage.act(Gdx.graphics.getDeltaTime());
-        //stage.draw();
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
 
 
         batcher.disableBlending();
         batcher.begin();
 
-        batcher.draw(logo,WORLD_WIDTH/3,WORLD_HEIGHT*0.7f, WORLD_WIDTH/3, WORLD_WIDTH/3);
-        batcher.draw(singleplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(logo, WORLD_WIDTH /3,WORLD_HEIGHT*0.7f, WORLD_WIDTH / 3, WORLD_WIDTH / 3);
+        batcher.draw(singleplayerButton, WORLD_WIDTH / 6, WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(optionsButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(addImagesButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
@@ -204,5 +211,10 @@ public class MainMenuScreen implements Screen{
             sb.append(Integer.toHexString(r.nextInt()));
         }
         return sb.toString().substring(0, numchars);
+    }
+
+    private String getUserName() {
+        AchtungGame tempGame = (AchtungGame) this.game;
+        return tempGame.getResolver().getUserName();
     }
 }

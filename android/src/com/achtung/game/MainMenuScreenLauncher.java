@@ -12,6 +12,7 @@ public class MainMenuScreenLauncher extends AndroidApplication {
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		config.useGyroscope = true;
 
 		Bundle extras = getIntent().getExtras();
 		String userName = extras.getString("Username");

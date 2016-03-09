@@ -32,6 +32,11 @@ public class AndroidLibgdxResolver implements AndroidLibgdxInterface {
         context.startActivity(intent);
     }
 
+    /*
+    * Method to handle updating of an existing person from the recognition
+    * album
+    */
+
     @Override
     public void updateFaceRec() {
         Intent intent = new Intent(this.context, AddNewUser.class);
