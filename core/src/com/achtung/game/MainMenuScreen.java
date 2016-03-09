@@ -138,7 +138,6 @@ public class MainMenuScreen implements Screen{
                 AchtungGame tempGame = (AchtungGame) this.game;
                 tempGame.getResolver().updateFaceRec();
 
-
             }
         }
     }

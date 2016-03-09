@@ -5,6 +5,7 @@ import com.achtung.game.MainMenuScreen;
 import com.achtung.game.PlayAgainScreen;
 import com.achtung.game.Player;
 import com.achtung.game.Position;
+import com.achtung.game.WaitingScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
