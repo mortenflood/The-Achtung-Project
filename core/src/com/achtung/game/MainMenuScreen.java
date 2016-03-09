@@ -138,7 +138,6 @@ public class MainMenuScreen implements Screen{
                 AchtungGame tempGame = (AchtungGame) this.game;
                 tempGame.getResolver().updateFaceRec();
 
-
             }
         }
     }
@@ -150,8 +149,8 @@ public class MainMenuScreen implements Screen{
         camera.update();
         batcher.setProjectionMatrix(camera.combined);
 
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
+        //stage.act(Gdx.graphics.getDeltaTime());
+        //stage.draw();
 
 
         batcher.disableBlending();
