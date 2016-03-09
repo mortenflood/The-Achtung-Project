@@ -1,6 +1,7 @@
 package com.achtung.game.multiplayer;
 
 import com.achtung.game.AchtungInputProcessor;
+import com.achtung.game.MainMenuScreen;
 import com.achtung.game.Player;
 import com.achtung.game.Position;
 import com.badlogic.gdx.Game;
@@ -28,8 +29,8 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     static final int GAME_OVER = 4;
 
     Game game;
-    private final int WORLD_WIDTH = 181;
-    private final int WORLD_HEIGHT = 300;
+    private final int WORLD_WIDTH = 720;
+    private final int WORLD_HEIGHT = 1184;
 
     int state;
     OrthographicCamera guiCam;
@@ -43,6 +44,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     private StartMultiplayerScreen prevScreen;
     private Player player;
     private AchtungInputProcessor processor;
+    private boolean isGameOver;
 
 
     public MultiplayerGameScreen (Game game, StartMultiplayerScreen prevScreen) {
@@ -53,9 +55,10 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
         guiCam.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);
         touchPoint = new Vector3();
         batcher = new SpriteBatch();
-        int x = MathUtils.round(100* MathUtils.random());
-        int y = MathUtils.round(100* MathUtils.random());
-        player = new Player(x, y, 1, Color.BLUE);
+        int x = MathUtils.round(650* MathUtils.random() + 20);
+        int y = MathUtils.round(500* MathUtils.random() + 120);
+
+        player = new Player(x, y, 3, Color.BLUE);
 
         worldListener = new World.WorldListener() {
             @Override
@@ -78,6 +81,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
         renderer = new WorldRenderer(batcher, world, player);
         lastScore = 0;
         scoreString = "SCORE: 0";
+        isGameOver = false;
 
         processor = new AchtungInputProcessor(player);
         Gdx.input.setInputProcessor(processor);
@@ -96,13 +100,17 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
 
     @Override
     public void render(float delta) {
-        draw();
         update();
+        draw();
     }
 
     public void update(){
+        if (this.isGameOver || renderer.isGameOver) {
+            gameOver();
+        }
 
     }
+
 
     public void draw(){
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -161,14 +169,27 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
 
     }
 
+    public void gameOver() {
+        //whatever needs to be done
+        handleLeaveGame();
+        game.setScreen(new MainMenuScreen(game));
+    }
+
+    private void handleLeaveGame(){
+        WarpController.getInstance().handleLeave();
+    }
+
     @Override
     public void onGameUpdateReceived(String message) {
         try {
             JSONObject data = new JSONObject(message);
+            boolean isGameOver = data.getBoolean("isGameOver");
+            this.isGameOver = isGameOver;
+            boolean isGap = data.getBoolean("isGap");
             int x = (int)data.getDouble("x");
             int y = (int)data.getDouble("y");
             Position pos = new Position(x, y);
-            renderer.addEnemyPos(pos);
+            renderer.addEnemyPos(pos, isGap);
 //            renderer.addEnemyXY(x, y);
 
         } catch (Exception e) {
