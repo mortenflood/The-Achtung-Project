@@ -6,6 +6,7 @@ eclipse.project {
     name = appName + "-core"
 }
 dependencies {
-    compile files('/Users/Zlash/Dropbox/UCSB/ECE251_Mobile-Embedded-Systems/The-Achtung-Project/libs/App42MultiPlayerGamingSDK.jar')
-    compile files('/Users/Zlash/Dropbox/UCSB/ECE251_Mobile-Embedded-Systems/The-Achtung-Project/android/libs/json-org.jar')
+    compile files('/Users/mortenflood/Documents/Android/The-Achtung-Project/libs/App42MultiPlayerGamingSDK.jar')
+    compile files('/Users/mortenflood/Documents/Android/The-Achtung-Project/android/libs/json-org.jar')
+
 }

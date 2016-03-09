@@ -37,6 +37,7 @@ public class MainMenuScreen implements Screen{
     Stage stage;
     Skin skin;
     Table table;
+
     Label usernameLabel;
 
 
@@ -62,7 +63,7 @@ public class MainMenuScreen implements Screen{
          addImagesBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
 
          //SKINS, STAGES AND FONTS
-
+        /*
          skin = new Skin(Gdx.files.internal("data/uiskin.json"));
          stage = new Stage();
          Gdx.input.setInputProcessor(stage);
@@ -75,11 +76,11 @@ public class MainMenuScreen implements Screen{
          table = new Table();
          table.setFillParent(true);
          stage.addActor(table);
-         final TextButton button = new TextButton("CLICK ME!", skin);
-         button.setWidth(500f);
-         button.setHeight(100f);
-         button.setPosition(WORLD_WIDTH/4, WORLD_HEIGHT*0.65f);
-         table.add(button).size(400f,200f);*/
+
+         label = new Label("UserName", skin);
+         table.setPosition(WORLD_WIDTH/4,WORLD_HEIGHT*0.6f);
+         label.setFontScale(2);
+         table.add(label);*/
 
 
 
@@ -130,7 +131,7 @@ public class MainMenuScreen implements Screen{
             }
 
             if (optionsBound.contains(touchPoint.x, touchPoint.y)) {
-
+                game.setScreen(new OptionsScreen(game));
 
             }
             if (addImagesBound.contains(touchPoint.x, touchPoint.y)) {
