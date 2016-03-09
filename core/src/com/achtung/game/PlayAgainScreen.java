@@ -4,6 +4,7 @@ package com.achtung.game;
  * Created by mortenflood on 08.03.16.
  */
 import com.achtung.game.multiplayer.StartMultiplayerScreen;
+import com.achtung.game.multiplayer.WarpController;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -17,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+
+import java.util.Random;
 
 import javafx.scene.Camera;
 import javafx.scene.input.TouchPoint;
@@ -87,7 +90,7 @@ public class PlayAgainScreen implements Screen {
             batcher.draw(youLoseLabel, WORLD_WIDTH / 6, WORLD_HEIGHT * 0.7f, WORLD_WIDTH / 1.5f, WORLD_HEIGHT / 12);
         }
         batcher.draw(playAgainButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12 );
-        batcher.draw(mainMenuButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.25f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(mainMenuButton, WORLD_WIDTH / 6, WORLD_HEIGHT * 0.25f, WORLD_WIDTH / 1.5f, WORLD_HEIGHT / 12);
 
         batcher.end();
 
@@ -98,6 +101,7 @@ public class PlayAgainScreen implements Screen {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (playagainBounds.contains(touchPoint.x, touchPoint.y)) {
+                WarpController.getInstance().startApp(getRandomHexString(10));
                 game.setScreen(new StartMultiplayerScreen(game));
                 return;
             }
@@ -131,5 +135,14 @@ public class PlayAgainScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    private String getRandomHexString(int numchars){
+        Random r = new Random();
+        StringBuffer sb = new StringBuffer();
+        while(sb.length() < numchars){
+            sb.append(Integer.toHexString(r.nextInt()));
+        }
+        return sb.toString().substring(0, numchars);
     }
 }

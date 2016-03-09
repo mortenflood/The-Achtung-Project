@@ -2,6 +2,7 @@ package com.achtung.game.multiplayer;
 
 import com.achtung.game.AchtungInputProcessor;
 import com.achtung.game.MainMenuScreen;
+import com.achtung.game.PlayAgainScreen;
 import com.achtung.game.Player;
 import com.achtung.game.Position;
 import com.achtung.game.WaitingScreen;
@@ -106,8 +107,12 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     }
 
     public void update(){
-        if (this.isGameOver || renderer.isGameOver) {
-            gameOver();
+        //figure out who wins
+        if (this.isGameOver) {
+            gameOver(true);
+        }
+        else if (renderer.isGameOver) {
+            gameOver(false);
         }
 
     }
@@ -170,10 +175,11 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
 
     }
 
-    public void gameOver() {
-        //whatever needs to be done
+    public void gameOver(boolean winner) {
         handleLeaveGame();
-        game.setScreen(new MainMenuScreen(game));
+
+        // figure out who wins
+        game.setScreen(new PlayAgainScreen(game, winner));
     }
 
     private void handleLeaveGame(){

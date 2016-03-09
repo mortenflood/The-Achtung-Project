@@ -184,7 +184,7 @@ public class WorldRenderer {
 
         if (gapCounter != 0) {
             gapCounter++;
-            if (gapCounter >= 30) {
+            if (gapCounter >= 20) {
                 gapCounter = 0;
             }
         }

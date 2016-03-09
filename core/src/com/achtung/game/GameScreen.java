@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
     private Player player2;
     private int gapCounter;
     private Player gapPlayer;
-    private boolean motionControl;
+    private boolean motionControl = true;
 
     //checkcollision doesnt work
     //add listener to the buttons
@@ -152,10 +152,27 @@ public class GameScreen implements Screen {
     }
 
     public void update() {
+        if (this.motionControl = true) {
+            Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
 
-//        if (Gdx.input.getGyroscopeY() > 0) {
-//            mainPlayer.setMoveLeft(true);
-//        }
+            int threshold = 3;
+            if (Gdx.input.getAccelerometerX() > threshold ) {
+                mainPlayer.setMoveLeft(true);
+            }
+
+            else if (Gdx.input.getAccelerometerX() < -threshold ) {
+                mainPlayer.setMoveRight(true);
+            }
+
+            else if (Gdx.input.getAccelerometerX() < threshold && Gdx.input.getAccelerometerX() > -threshold ) {
+                mainPlayer.setMoveLeft(false);
+                mainPlayer.setMoveRight(false);
+            }
+
+//            else if (Gdx.input.getGyroscopeY() < 0) {
+//                mainPlayer.setMoveRight(true);
+//            }
+        }
 
 //        if (Gdx.input.getGyroscopeY() < 1) {
 //            mainPlayer.setMoveLeft(false);
