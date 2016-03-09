@@ -428,11 +428,10 @@ public class ImageConfirmation extends Activity {
 					//Send user to game main menu
 					Intent intent = new Intent(ImageConfirmation.this, MainMenuScreenLauncher.class);
 					intent.putExtra("Username", personName);
+					intent.putExtra("PersonID", selectedPersonId);
 					startActivity(intent);
 				}
 				else if(!mainMenu && mainFaceRecMenu) {
-
-
 					//Send user to game main menu
 					Intent intent = new Intent(ImageConfirmation.this, MainFaceRecActivity.class);
 //				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

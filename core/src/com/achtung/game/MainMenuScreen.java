@@ -135,8 +135,7 @@ public class MainMenuScreen implements Screen{
 
             }
             if (addImagesBound.contains(touchPoint.x, touchPoint.y)) {
-                AchtungGame tempGame = (AchtungGame) this.game;
-                tempGame.getResolver().updateFaceRec();
+                //TODO: Removed adding multiple faceRec images. Change to highscores?
 
             }
         }
