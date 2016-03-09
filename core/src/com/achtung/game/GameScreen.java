@@ -37,12 +37,13 @@ public class GameScreen implements Screen {
     OrthographicCamera guiCam;
     Vector3 touchPoint;
     SpriteBatch batcher;
-    private Texture left, right, exit;
+    private Texture left, right, left2, right2, exit;
     private ShapeRenderer renderer;
 
     private ArrayList<Player> players, losingplayers;
     private AchtungInputProcessor processor;
     private Player mainPlayer;
+    private Player player2;
     private int gapCounter;
     private Player gapPlayer;
 
@@ -73,20 +74,22 @@ public class GameScreen implements Screen {
         left = new Texture("leftarrowfinal.png");
         right = new Texture("rightarrowfinal.png");
 
+        right2 = new Texture("leftarrowfinal.png");
+        left2 = new Texture("rightarrowfinal.png");
+
         renderer = new ShapeRenderer();
 
         players = new ArrayList<Player>();
         losingplayers = new ArrayList<Player>();
 
-        mainPlayer = new Player(screenX/2, screenY/2, 2, com.badlogic.gdx.graphics.Color.BLUE);
-
+        mainPlayer = new Player(screenX/2, screenY/2, 4, com.badlogic.gdx.graphics.Color.BLUE);
+        player2 = new Player(screenX/2, screenY/4, 4, com.badlogic.gdx.graphics.Color.RED);
 
         players.add(mainPlayer);
+        players.add(player2);
 
-        processor = new AchtungInputProcessor(mainPlayer);
+        processor = new AchtungInputProcessor(mainPlayer, player2);
         Gdx.input.setInputProcessor(processor);
-
-
 
     }
 
@@ -110,15 +113,19 @@ public class GameScreen implements Screen {
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(com.badlogic.gdx.graphics.Color.BLACK);
-        renderer.rectLine(10f, screenY / 10, 10f, screenY - 5f, 10f);
+        renderer.rectLine(10f, screenY / 10 + 5f, 10f, 9 * screenY / 10 - 5f, 10f);
         renderer.rectLine(10f, screenY / 10 + 5f, screenX - 10f, screenY / 10 + 5f, 10f);
-        renderer.rectLine(10f, screenY - 10f, screenX - 10f, screenY - 10f, 10f);
-        renderer.rectLine(screenX - 10f, screenY / 10, screenX - 10f, screenY - 5f, 10f);
+        renderer.rectLine(10f, 9 * screenY / 10 - 5f, screenX - 10f, 9 * screenY / 10 - 5f, 10f);
+        renderer.rectLine(screenX - 10f, screenY / 10 + 5f, screenX - 10f, 9 * screenY / 10 - 5f, 10f);
         renderer.end();
 
         batcher.begin();
         batcher.draw(left, 0f, 0f, 4 * screenX / 10, screenY / 10);
         batcher.draw(right, 6 * screenX / 10, 0f, 4 * screenX / 10, screenY / 10);
+
+        batcher.draw(right2, 0f, screenY - screenY / 10, 4 * screenX / 10, screenY / 10);
+        batcher.draw(left2, 6 * screenX / 10, screenY - screenY / 10, 4 * screenX / 10, screenY / 10);
+
         //sprites.draw(exit, Gdx.graphics.getWidth()/2, 500f, 300f, 300f);
         batcher.end();
 
@@ -140,8 +147,6 @@ public class GameScreen implements Screen {
             }
             renderer.circle(p.getxPos(), p.getyPos(), 5);
             renderer.end();
-
-
         }
     }
 
