@@ -1,10 +1,4 @@
-package com.achtung.game.faceRec;/*
- * =========================================================================
- * Copyright (c) 2014 Qualcomm Technologies, Inc. All Rights Reserved.
- * Qualcomm Technologies Proprietary and Confidential.
- * =========================================================================
- * @file com.mygdx.game.ChooseUser.java
- */
+package com.achtung.game.faceRec;
 
 import android.app.Activity;
 import android.app.AlertDialog;
