@@ -1,5 +1,6 @@
 package com.achtung.game.multiplayer;
 
+import com.achtung.game.AchtungGame;
 import com.achtung.game.AchtungInputProcessor;
 import com.achtung.game.PlayAgainScreen;
 import com.achtung.game.Player;
@@ -106,7 +107,8 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     public void update(){
 
         //Accelerometer used to control with phone motion
-        //if (this.motionControl = true) {
+        if (AchtungGame.motionControlEnabled) {
+
             Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
 
             int threshold = 3;
@@ -123,7 +125,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
                 player.setMoveRight(false);
             }
 
-        //}
+        }
         //figure out who wins
         if (this.isGameOver) {
             gameOver(true);
