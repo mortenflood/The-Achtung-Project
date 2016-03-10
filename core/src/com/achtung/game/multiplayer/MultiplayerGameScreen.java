@@ -1,11 +1,9 @@
 package com.achtung.game.multiplayer;
 
 import com.achtung.game.AchtungInputProcessor;
-import com.achtung.game.MainMenuScreen;
 import com.achtung.game.PlayAgainScreen;
 import com.achtung.game.Player;
 import com.achtung.game.Position;
-import com.achtung.game.WaitingScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -14,7 +12,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 import org.json.JSONObject;
@@ -107,6 +104,26 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     }
 
     public void update(){
+
+        //Accelerometer used to control with phone motion
+        //if (this.motionControl = true) {
+            Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
+
+            int threshold = 3;
+            if (Gdx.input.getAccelerometerX() > threshold ) {
+                player.setMoveLeft(true);
+            }
+
+            else if (Gdx.input.getAccelerometerX() < -threshold ) {
+                player.setMoveRight(true);
+            }
+
+            else if (Gdx.input.getAccelerometerX() < threshold && Gdx.input.getAccelerometerX() > -threshold ) {
+                player.setMoveLeft(false);
+                player.setMoveRight(false);
+            }
+
+        //}
         //figure out who wins
         if (this.isGameOver) {
             gameOver(true);
