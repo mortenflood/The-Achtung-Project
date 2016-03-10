@@ -1,12 +1,9 @@
-package com.achtung.game;
+package com.achtung.game.multiplayer;
 
 /**
  * Created by mortenflood on 08.03.16.
  */
-import com.achtung.game.multiplayer.MultiplayerGameScreen;
-import com.achtung.game.multiplayer.StartMultiplayerScreen;
-import com.achtung.game.multiplayer.WarpController;
-import com.achtung.game.multiplayer.WarpListener;
+import com.achtung.game.MainMenuScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -16,15 +13,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import java.util.ArrayList;
-
-import javafx.scene.Camera;
-import javafx.scene.input.TouchPoint;
 
 /**
  * Created by mortenflood on 08.03.16.

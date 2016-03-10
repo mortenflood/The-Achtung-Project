@@ -4,9 +4,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -127,7 +129,6 @@ public class GameScreen implements Screen {
         batcher.draw(right2, 0f, screenY - screenY / 10, 4 * screenX / 10, screenY / 10);
         batcher.draw(left2, 6 * screenX / 10, screenY - screenY / 10, 4 * screenX / 10, screenY / 10);
 
-        //sprites.draw(exit, Gdx.graphics.getWidth()/2, 500f, 300f, 300f);
         batcher.end();
 
         for (Player p : players) {
@@ -137,6 +138,13 @@ public class GameScreen implements Screen {
                 //remove from game
                 // make new list with all players, remove from list, add to new?
                 losingplayers.add(p);
+                // do stuff when one dies
+                if (p.equals(mainPlayer)) {
+                    gameOver(mainPlayer);
+                }
+                else if (p.equals(player2)) {
+                    gameOver(player2);
+                }
             }
 
             //update players list, remove losingplayers
@@ -151,27 +159,36 @@ public class GameScreen implements Screen {
         }
     }
 
-    public void update() {
-
-        //Accelerometer used to control with phone motion
-        if (this.motionControl = true) {
-            Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
-
-            int threshold = 3;
-            if (Gdx.input.getAccelerometerX() > threshold ) {
-                mainPlayer.setMoveLeft(true);
-            }
-
-            else if (Gdx.input.getAccelerometerX() < -threshold ) {
-                mainPlayer.setMoveRight(true);
-            }
-
-            else if (Gdx.input.getAccelerometerX() < threshold && Gdx.input.getAccelerometerX() > -threshold ) {
-                mainPlayer.setMoveLeft(false);
-                mainPlayer.setMoveRight(false);
-            }
+    public void gameOver(Player p) {
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
 
         }
+        game.setScreen(new MainMenuScreen(game));
+    }
+
+    public void update() {
+
+//        //Accelerometer used to control with phone motion
+//        if (this.motionControl = true) {
+//            Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
+//
+//            int threshold = 3;
+//            if (Gdx.input.getAccelerometerX() > threshold ) {
+//                mainPlayer.setMoveLeft(true);
+//            }
+//
+//            else if (Gdx.input.getAccelerometerX() < -threshold ) {
+//                mainPlayer.setMoveRight(true);
+//            }
+//
+//            else if (Gdx.input.getAccelerometerX() < threshold && Gdx.input.getAccelerometerX() > -threshold ) {
+//                mainPlayer.setMoveLeft(false);
+//                mainPlayer.setMoveRight(false);
+//            }
+//
+//        }
 
         for (Player p : players) {
 
@@ -218,7 +235,7 @@ public class GameScreen implements Screen {
     public boolean checkCollision(Player p) {
 
         if(p.getxPos() <= 19f || p.getxPos() >= screenX - 19f
-                || p.getyPos() <= screenY/10 + 19f || p.getyPos() >= screenY - 19) {
+                || p.getyPos() <= screenY/10 + 19f || p.getyPos() >= 9* screenY / 10 - 14) {
             return true;
         }
 
