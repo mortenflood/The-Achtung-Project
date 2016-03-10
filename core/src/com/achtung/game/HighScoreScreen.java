@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -28,9 +29,14 @@ public class HighScoreScreen implements Screen {
     SpriteBatch batcher;
     OrthographicCamera camera;
     Vector3 touchPoint;
-    Stage stage;
     Texture motionONButton, motionOFFButton, mainMenuButton, highScoreLabel;
     Rectangle mainMenuBounds;
+
+    Stage stage;
+    Skin skin;
+    Table table;
+    Label usernameLabel;
+    BitmapFont font;
 
 
 
@@ -49,6 +55,7 @@ public class HighScoreScreen implements Screen {
         highScoreLabel = new Texture("highscorelabel.png");
         mainMenuBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
 
+        font = new BitmapFont(Gdx.files.internal("data/arial-32.fnt"));
 
         //SKINS, STAGES AND FONTS
         /*
@@ -94,6 +101,9 @@ public class HighScoreScreen implements Screen {
 
         batcher.disableBlending();
         batcher.begin();
+
+        font.draw(batcher, "TEST !!!!", WORLD_WIDTH / 3, WORLD_HEIGHT / 2);
+
         batcher.draw(highScoreLabel, WORLD_WIDTH/4,WORLD_HEIGHT*0.8f, WORLD_WIDTH/2f, WORLD_HEIGHT/12 );
         batcher.draw(mainMenuButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.end();

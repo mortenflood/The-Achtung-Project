@@ -95,7 +95,7 @@ public class PlayAgainScreen implements Screen {
 
             if (playagainBounds.contains(touchPoint.x, touchPoint.y)) {
                 WarpController.getInstance().startApp(getRandomHexString(10));
-                game.setScreen(new StartMultiplayerScreen(game));
+                game.setScreen(new WaitingScreen(game));
                 return;
             }
             if (mainMenuBounds.contains(touchPoint.x, touchPoint.y)) {

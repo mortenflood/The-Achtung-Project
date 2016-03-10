@@ -55,6 +55,7 @@ public class WaitingScreen implements Screen, WarpListener {
     public WaitingScreen(Game game) {
         this.game = game;
         setup();
+        WarpController.getInstance().setListener(this);
 
     }
 

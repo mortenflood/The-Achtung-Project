@@ -9,6 +9,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -33,6 +34,7 @@ public class MainMenuScreen implements Screen{
     Stage stage;
     Skin skin;
     Table table;
+    BitmapFont font;
 
     Label usernameLabel;
 
@@ -52,15 +54,16 @@ public class MainMenuScreen implements Screen{
          batcher = new SpriteBatch();
 
          //BOUNDS
-         multiplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-         singleplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+         multiplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+         singleplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
          logoutBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
-         optionsBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-         highScoreBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+         optionsBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+         //highScoreBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
 
          //SKINS, STAGES AND FONTS
-        /*
-         skin = new Skin(Gdx.files.internal("data/uiskin.json"));
+         font = new BitmapFont(Gdx.files.internal("data/arial-32.fnt"));
+
+         /*skin = new Skin(Gdx.files.internal("data/uiskin.json"));
          stage = new Stage();
          Gdx.input.setInputProcessor(stage);
          usernameLabel = new Label(getUserName(), skin);
@@ -68,7 +71,7 @@ public class MainMenuScreen implements Screen{
          usernameLabel.setPosition(0,0);
          usernameLabel.setFontScale(1);
 
-         /*
+
          table = new Table();
          table.setFillParent(true);
          stage.addActor(table);
@@ -116,7 +119,7 @@ public class MainMenuScreen implements Screen{
             if (multiplayerBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Assets.playSound(Assets.clickSound);
                 WarpController.getInstance().startApp(getRandomHexString(10));
-                game.setScreen(new StartMultiplayerScreen(game));
+                game.setScreen(new WaitingScreen(game));
                 return;
             }
             if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
@@ -130,11 +133,11 @@ public class MainMenuScreen implements Screen{
                 game.setScreen(new OptionsScreen(game));
 
             }
-            if (highScoreBound.contains(touchPoint.x, touchPoint.y)) {
+            /*if (highScoreBound.contains(touchPoint.x, touchPoint.y)) {
                 //TODO: Removed adding multiple faceRec images. Change to highscores?
                 game.setScreen(new HighScoreScreen(game));
 
-            }
+            }*/
         }
     }
 
@@ -152,11 +155,12 @@ public class MainMenuScreen implements Screen{
         batcher.disableBlending();
         batcher.begin();
 
-        batcher.draw(logo, WORLD_WIDTH /3,WORLD_HEIGHT*0.7f, WORLD_WIDTH / 3, WORLD_WIDTH / 3);
-        batcher.draw(singleplayerButton, WORLD_WIDTH / 6, WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-        batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-        batcher.draw(optionsButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-        batcher.draw(highScoreButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+
+        batcher.draw(logo, WORLD_WIDTH /3,WORLD_HEIGHT*0.60f, WORLD_WIDTH / 3, WORLD_WIDTH / 3);
+        batcher.draw(singleplayerButton, WORLD_WIDTH / 6, WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(optionsButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        //batcher.draw(highScoreButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(logoutButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.end();
 
