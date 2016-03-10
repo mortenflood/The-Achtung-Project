@@ -2,6 +2,7 @@ package com.achtung.game;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Created by mortenflood on 29.02.16.
@@ -30,7 +31,7 @@ public class Player {
         this.speed = speed;
         this.color = color;
         path = new ArrayList<Position>();
-        radians = 3.1415f/2;
+        radians = MathUtils.random(0f,3.1415f);
         rotationSpeed = 0.1f;
     }
 

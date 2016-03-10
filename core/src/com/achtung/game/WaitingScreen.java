@@ -202,7 +202,7 @@ public class WaitingScreen implements Screen, WarpListener {
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run () {
-                //game.setScreen(new MultiplayerGameScreen(game, WaitingScreen.this));
+                game.setScreen(new MultiplayerGameScreen(game));
             }
         });
 

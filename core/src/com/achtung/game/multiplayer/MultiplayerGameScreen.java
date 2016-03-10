@@ -49,9 +49,9 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
     private boolean isGameOver;
 
 
-    public MultiplayerGameScreen (Game game, StartMultiplayerScreen prevScreen) {
+    public MultiplayerGameScreen (Game game) {
         this.game = game;
-        this.prevScreen = prevScreen;
+        //this.prevScreen = prevScreen;
         state = GAME_RUNNING;
         guiCam = new OrthographicCamera(WORLD_WIDTH, WORLD_HEIGHT);
         guiCam.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);

@@ -30,10 +30,9 @@ public class MainMenuScreen implements Screen{
     OrthographicCamera camera;
     SpriteBatch batcher;
     Rectangle testBounds;
-    //Rectangle playBounds, highscoresBounds, helpBounds;
-    Rectangle multiplayerBounds, singleplayerBounds, logoutBounds, optionsBound, addImagesBound;
+    Rectangle multiplayerBounds, singleplayerBounds, logoutBounds, optionsBound, highScoreBound;
     Vector3 touchPoint;
-    Texture exit, singleplayerButton, multiplayerButton, logoutButton, logo, optionsButton, addImagesButton;
+    Texture exit, singleplayerButton, multiplayerButton, logoutButton, logo, optionsButton, highScoreButton;
     Stage stage;
     Skin skin;
     Table table;
@@ -60,7 +59,7 @@ public class MainMenuScreen implements Screen{
          singleplayerBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
          logoutBounds = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/10);
          optionsBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-         addImagesBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+         highScoreBound = new Rectangle(WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
 
          //SKINS, STAGES AND FONTS
         /*
@@ -86,12 +85,12 @@ public class MainMenuScreen implements Screen{
 
          //TEXTURES
          touchPoint = new Vector3();
-         singleplayerButton = new Texture("singleplayer.png");
+         singleplayerButton = new Texture("twoplayer.png");
          multiplayerButton = new Texture("multiplayer.png");
          logoutButton = new Texture("logout.png");
          logo = new Texture("achtung.jpg");
          optionsButton = new Texture("options.png");
-         addImagesButton = new Texture("addimages.png");
+         highScoreButton = new Texture("highscore.png");
 
      }
 
@@ -134,8 +133,9 @@ public class MainMenuScreen implements Screen{
                 game.setScreen(new OptionsScreen(game));
 
             }
-            if (addImagesBound.contains(touchPoint.x, touchPoint.y)) {
+            if (highScoreBound.contains(touchPoint.x, touchPoint.y)) {
                 //TODO: Removed adding multiple faceRec images. Change to highscores?
+                game.setScreen(new HighScoreScreen(game));
 
             }
         }
@@ -159,7 +159,7 @@ public class MainMenuScreen implements Screen{
         batcher.draw(singleplayerButton, WORLD_WIDTH / 6, WORLD_HEIGHT*0.5f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(multiplayerButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.4f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(optionsButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.3f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
-        batcher.draw(addImagesButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
+        batcher.draw(highScoreButton, WORLD_WIDTH/6,WORLD_HEIGHT*0.2f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.draw(logoutButton,WORLD_WIDTH/6,WORLD_HEIGHT*0.1f, WORLD_WIDTH/1.5f, WORLD_HEIGHT/12);
         batcher.end();
 

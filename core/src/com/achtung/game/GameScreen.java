@@ -27,6 +27,8 @@ public class GameScreen implements Screen {
     static final int GAME_LEVEL_END = 3;
     static final int GAME_OVER = 4;
 
+    public boolean gameFinished = false;
+
     private int screenX = 1440;
     private int screenY = 2392;
 
@@ -46,7 +48,9 @@ public class GameScreen implements Screen {
     private Player player2;
     private int gapCounter;
     private Player gapPlayer;
-    private boolean motionControl = true;
+    private boolean motionControl = false;
+    private int winner;
+
 
     //checkcollision doesnt work
     //add listener to the buttons
@@ -75,16 +79,24 @@ public class GameScreen implements Screen {
         left = new Texture("leftarrowfinal.png");
         right = new Texture("rightarrowfinal.png");
 
-        right2 = new Texture("leftarrowfinal.png");
-        left2 = new Texture("rightarrowfinal.png");
+        right2 = new Texture("leftarrowblue.png");
+        left2 = new Texture("rightarrowblue.png");
 
         renderer = new ShapeRenderer();
 
         players = new ArrayList<Player>();
         losingplayers = new ArrayList<Player>();
 
-        mainPlayer = new Player(screenX/2, screenY/2, 4, com.badlogic.gdx.graphics.Color.BLUE);
-        player2 = new Player(screenX/2, screenY/4, 4, com.badlogic.gdx.graphics.Color.RED);
+
+        int x1 =  MathUtils.random(20,80) * screenX/100;
+        int y1 =  MathUtils.random(20,80) * screenY/100;
+        int x2 =  MathUtils.random(20,80) * screenX/100;
+        int y2 =  MathUtils.random(20,80) * screenY/100;
+
+        Gdx.app.log("START", "x1: " + Integer.toString(x1) +"y1: " + Integer.toString(y1) + "x2: " + Integer.toString(x2) + "y2: "  + Integer.toString(y2));
+
+        mainPlayer = new Player(x1, y1, 4, com.badlogic.gdx.graphics.Color.RED);
+        player2 = new Player(x2, y2, 4, com.badlogic.gdx.graphics.Color.BLUE);
 
         players.add(mainPlayer);
         players.add(player2);
@@ -137,6 +149,14 @@ public class GameScreen implements Screen {
                 //remove from game
                 // make new list with all players, remove from list, add to new?
                 losingplayers.add(p);
+                for (Player playah: players){
+                    if (!losingplayers.contains(playah)){
+                        winner = playah.getColor().equals(com.badlogic.gdx.graphics.Color.RED) ? 1 : 2 ;
+
+                    }
+                }
+                gameFinished = true;
+
             }
 
             //update players list, remove losingplayers
@@ -148,13 +168,14 @@ public class GameScreen implements Screen {
             }
             renderer.circle(p.getxPos(), p.getyPos(), 5);
             renderer.end();
+
         }
     }
 
     public void update() {
 
         //Accelerometer used to control with phone motion
-        if (this.motionControl = true) {
+        /*if (this.motionControl = true) {
             Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
 
             int threshold = 3;
@@ -171,7 +192,7 @@ public class GameScreen implements Screen {
                 mainPlayer.setMoveRight(false);
             }
 
-        }
+        }*/
 
         for (Player p : players) {
 
@@ -213,12 +234,16 @@ public class GameScreen implements Screen {
     public void render(float delta) {
         update();
         draw();
+        if (gameFinished){
+            game.setScreen(new SinglePlayAgainScreen(game, winner));
+        }
+
     }
 
     public boolean checkCollision(Player p) {
 
         if(p.getxPos() <= 19f || p.getxPos() >= screenX - 19f
-                || p.getyPos() <= screenY/10 + 19f || p.getyPos() >= screenY - 19) {
+                || p.getyPos() <= screenY/10 + 19f || p.getyPos() >= 9 * screenY / 10 - 5f) {
             return true;
         }
 
