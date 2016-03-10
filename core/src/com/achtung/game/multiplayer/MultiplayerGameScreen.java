@@ -108,6 +108,7 @@ public class MultiplayerGameScreen implements Screen, WarpListener {
 
         //Accelerometer used to control with phone motion
         if (AchtungGame.motionControlEnabled) {
+
             Gdx.app.log("ACCELEROMETER", Float.toString(Gdx.input.getAccelerometerX()));
 
             int threshold = 3;

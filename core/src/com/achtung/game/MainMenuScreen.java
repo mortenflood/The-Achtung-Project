@@ -6,6 +6,7 @@ import com.achtung.game.multiplayer.*;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -35,6 +36,8 @@ public class MainMenuScreen implements Screen{
     Skin skin;
     Table table;
     BitmapFont font;
+    Music music;
+
 
     Label usernameLabel;
 
@@ -83,6 +86,15 @@ public class MainMenuScreen implements Screen{
 
 
 
+         music = Gdx.audio.newMusic(Gdx.files.internal("music/circus.mp3"));
+
+         if(AchtungGame.soundEnabled) {
+             music.play();
+         }
+         music.setVolume(0.5f);
+
+
+
          //TEXTURES
          touchPoint = new Vector3();
          singleplayerButton = new Texture("twoplayer.png");
@@ -113,6 +125,7 @@ public class MainMenuScreen implements Screen{
 
             if (singleplayerBounds.contains(touchPoint.x, touchPoint.y)) {
                 //Assets.playSound(Assets.clickSound);
+                music.stop();
                 game.setScreen(new GameScreen(game));
                 return;
             }
@@ -120,6 +133,7 @@ public class MainMenuScreen implements Screen{
                 //Assets.playSound(Assets.clickSound);
                 WarpController.getInstance().startApp(getRandomHexString(10));
                 game.setScreen(new WaitingScreen(game));
+                music.stop();
                 return;
             }
             if (logoutBounds.contains(touchPoint.x, touchPoint.y)) {
@@ -130,11 +144,13 @@ public class MainMenuScreen implements Screen{
             }
 
             if (optionsBound.contains(touchPoint.x, touchPoint.y)) {
+                music.stop();
                 game.setScreen(new OptionsScreen(game));
 
             }
             /*if (highScoreBound.contains(touchPoint.x, touchPoint.y)) {
                 //TODO: Removed adding multiple faceRec images. Change to highscores?
+                music.stop();
                 game.setScreen(new HighScoreScreen(game));
 
             }*/
@@ -198,6 +214,7 @@ public class MainMenuScreen implements Screen{
         addImagesButton.dispose();
         optionsButton.dispose();
         stage.dispose();*/
+        music.dispose();
 
 
     }
