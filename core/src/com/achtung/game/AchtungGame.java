@@ -14,7 +14,8 @@ public class AchtungGame extends Game {
 
     private AndroidLibgdxInterface resolver;
     private HashMap<String, int[]> hashScores; //HashMap containing user scores
-
+    public static boolean motionControlEnabled = false;
+    public static boolean soundEnabled = true;
     boolean firstTimeCreate = true;
     FPSLogger fps;
 
